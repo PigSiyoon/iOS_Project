@@ -29,7 +29,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor(red: 248/255, green: 65/255, blue: 85/255, alpha: 1).cgColor
         $0.layer.cornerRadius = 20
-        $0.placeholder = "  키를 입력해주세요"
+        $0.addLeftPadding()
+        $0.placeholder = "키를 입력해주세요"
         $0.setPlaceholderColor(UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 1))
     }
     
@@ -43,7 +44,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor(red: 248/255, green: 65/255, blue: 85/255, alpha: 1).cgColor
         $0.layer.cornerRadius = 20
-        $0.placeholder = "  몸무게를 입력해주세요"
+        $0.addLeftPadding()
+        $0.placeholder = "몸무게를 입력해주세요"
         $0.setPlaceholderColor(UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 1))
     }
     
@@ -63,6 +65,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     func configureUI() {
         view.backgroundColor = .white
+        inputHeightTF.delegate = self
+        inputHeightTF.delegate = self
         addView()
         location()
         
@@ -127,6 +131,12 @@ public extension UITextField {
                 .font: font
             ].compactMapValues { $0 }
         )
+    }
+    
+    func addLeftPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+      self.leftView = paddingView
+      self.leftViewMode = ViewMode.always
     }
     
 }
